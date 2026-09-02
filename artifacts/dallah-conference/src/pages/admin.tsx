@@ -68,7 +68,14 @@ export default function AdminDashboard() {
           handleLogout();
           throw new Error("Invalid password");
         }
-        throw new Error("Failed to fetch data");
+        let errorMessage = "Failed to fetch data";
+        try {
+          const errData = await res.json();
+          if (errData.error) errorMessage = errData.error;
+        } catch (e) {
+          // ignore JSON parse error
+        }
+        throw new Error(errorMessage);
       }
       return res.json();
     },
@@ -281,7 +288,7 @@ export default function AdminDashboard() {
               </div>
             ) : error ? (
               <div className="p-8 text-center text-destructive">
-                Error loading data. Please try again.
+                {error instanceof Error ? error.message : "Error loading data. Please try again."}
               </div>
             ) : data?.length === 0 ? (
               <div className="p-12 text-center text-muted-foreground">

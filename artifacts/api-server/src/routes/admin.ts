@@ -28,7 +28,8 @@ router.get("/admin/registrations", async (req, res): Promise<void> => {
     res.json(registrations);
   } catch (error) {
     req.log.error({ err: error }, "Failed to fetch registrations for admin");
-    res.status(500).json({ error: "Failed to fetch data" });
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    res.status(500).json({ error: `Failed to fetch data. DB Error: ${errorMessage}` });
   }
 });
 
