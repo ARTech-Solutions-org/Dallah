@@ -38,6 +38,7 @@ import bannerImage from './assets/dallah-banner.jpg';
 import shieldLogo from '@assets/Untitled_design_(19)_1788357176875.png';
 import dallahLogo from '@assets/Untitled_design_(24)_1788357638105.png';
 import referenceHero from '@assets/image_1788357913186.png';
+import poweredByLogo from '@assets/powered-by.png';
 
 const queryClient = new QueryClient();
 
@@ -436,6 +437,11 @@ function Home() {
           <span>Diabetes &amp; Obesity Conference · Dallah Hospital Al Nakheel</span>
           <span className="flex items-center gap-2"><Phone className="h-3.5 w-3.5 text-[#087c80]" aria-hidden="true" /> Riyadh · Saudi Arabia</span>
         </footer>
+
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 pb-4 text-center">
+          <span className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-[#087c80]/70">Powered by</span>
+          <img src={poweredByLogo} alt="Powered by" className="h-10 w-auto object-contain opacity-90 drop-shadow-sm mix-blend-multiply" />
+        </div>
       </div>
     </main>
   );
