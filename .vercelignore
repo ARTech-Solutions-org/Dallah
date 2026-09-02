@@ -1,5 +1,0 @@
-# The project exposes the complete Express API through the catch-all function.
-# Ignore legacy per-route functions if they still exist in the connected GitHub
-# repository, so Vercel does not compile or deploy a second API implementation.
-api/healthz.ts
-api/registrations.ts

@@ -58,7 +58,7 @@ export default function AdminDashboard() {
   const { data, isLoading, error } = useQuery<Registration[]>({
     queryKey: ["admin-registrations", authenticatedPassword],
     queryFn: async () => {
-      const res = await fetch("/api/admin/registrations", {
+      const res = await fetch("/api/admin", {
         headers: {
           Authorization: `Bearer ${authenticatedPassword}`,
         },
