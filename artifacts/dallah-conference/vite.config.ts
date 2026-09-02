@@ -42,6 +42,12 @@ export default defineConfig(async () => {
           '../../lib/api-client-react/src',
         ),
       },
+      // Tell Rollup where to look for node_modules when traversing files
+      // outside the frontend root (i.e. the aliased lib/ directory)
+      modules: [
+        path.resolve(import.meta.dirname, 'node_modules'),
+        'node_modules',
+      ],
       dedupe: ['react', 'react-dom'],
     },
     root: path.resolve(import.meta.dirname),
