@@ -38,7 +38,7 @@ import bannerImage from './assets/dallah-banner.jpg';
 import shieldLogo from '@assets/Untitled_design_(19)_1788357176875.png';
 import dallahLogo from '@assets/Untitled_design_(24)_1788357638105.png';
 import referenceHero from '@assets/image_1788357913186.png';
-import poweredByLogo from '@assets/powered-by.png';
+import poweredByLogo from './assets/powered-by.png';
 
 const queryClient = new QueryClient();
 
