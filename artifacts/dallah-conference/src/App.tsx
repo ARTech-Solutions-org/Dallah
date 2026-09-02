@@ -390,7 +390,7 @@ function Home() {
       <div className="conference-dots conference-dots-left" aria-hidden="true" />
       <div className="conference-dots conference-dots-right" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto max-w-[1080px] px-4 pt-5 sm:px-8 sm:pt-8 lg:px-10 lg:pt-10">
+      <div className="relative z-10 mx-auto max-w-[1080px] px-4 py-5 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
         <header className="mb-4 flex items-center justify-between px-1 sm:mb-5">
           <div className="flex items-center gap-2.5">
             <img src={shieldLogo} alt="Dallah Hospitals emblem" className="h-9 w-auto drop-shadow-[0_3px_5px_rgba(28,68,67,0.15)] brightness-0 invert" />
@@ -401,18 +401,16 @@ function Home() {
             <p className="mt-1 text-white">Riyadh · 18.09.26</p>
           </div>
         </header>
-      </div>
 
-      <section className="hero-banner relative z-10 w-full overflow-hidden border-y border-[#0c7c80]/20 bg-[#3cc0cf] shadow-[0_20px_50px_rgba(28,68,67,0.2)]">
-        <img
-          src={referenceHero}
-          alt="Diabetes and Obesity Conference by Dallah Hospital Al Nakheel, Riyadh, September 18th 2026"
-          data-testid="img-conference-banner"
-          className="mx-auto block h-auto w-full max-w-[1920px] object-cover"
-        />
-      </section>
+        <section className="hero-banner overflow-hidden rounded-[0.85rem] border border-[#0c7c80]/20 bg-[#3cc0cf] shadow-[0_20px_50px_rgba(28,68,67,0.2)]">
+          <img
+            src={referenceHero}
+            alt="Diabetes and Obesity Conference by Dallah Hospital Al Nakheel, Riyadh, September 18th 2026"
+            data-testid="img-conference-banner"
+            className="block h-auto w-full"
+          />
+        </section>
 
-      <div className="relative z-10 mx-auto max-w-[1080px] px-4 pb-5 sm:px-8 sm:pb-8 lg:px-10 lg:pb-10">
         <section className="registration-card relative z-10 mx-auto mt-5 max-w-[900px] rounded-[0.9rem] border-2 border-[#087c80] bg-[#fcf8ef] px-5 py-6 shadow-[0_22px_45px_rgba(28,68,67,0.2)] sm:mt-8 sm:px-9 sm:py-8 lg:mt-10 lg:px-10 lg:py-9">
           <div className="mb-7 flex items-start justify-between gap-5 border-b border-[#d9d5ca] pb-5">
             <div>
