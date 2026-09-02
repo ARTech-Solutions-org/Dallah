@@ -394,8 +394,8 @@ function Home() {
       <div className="relative z-10 mx-auto max-w-[1080px] px-4 py-5 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
         <header className="mb-4 flex items-center justify-between px-1 sm:mb-5">
           <div className="flex items-center gap-2.5">
-            <img src={shieldLogo} alt="Dallah Hospitals emblem" className="h-9 w-auto drop-shadow-[0_3px_5px_rgba(28,68,67,0.15)] brightness-0 invert" />
-            <img src={dallahLogo} alt="Dallah Hospitals" className="h-7 w-auto rounded-md bg-white/10 px-2 py-1 shadow-[0_4px_10px_rgba(28,68,67,0.12)] brightness-0 invert" />
+            <img src={shieldLogo} alt="Dallah Hospitals emblem" className="h-9 w-auto drop-shadow-[0_3px_5px_rgba(28,68,67,0.15)]" />
+            <img src={dallahLogo} alt="Dallah Hospitals" className="h-7 w-auto rounded-md bg-[#087c80] px-2 py-1 shadow-[0_4px_10px_rgba(28,68,67,0.12)]" />
           </div>
           <div className="text-right text-[0.63rem] font-bold uppercase tracking-[0.18em] text-white/80 sm:text-[0.68rem]">
             <p>Conference registration</p>
@@ -439,7 +439,7 @@ function Home() {
 
         <div className="mt-12 flex flex-col items-center justify-center gap-3 pb-4 text-center">
           <span className="text-[0.65rem] font-bold uppercase tracking-[0.15em] text-white/70">Powered by</span>
-          <img src={poweredByLogo} alt="Powered by" className="h-10 w-auto object-contain opacity-90 drop-shadow-sm brightness-0 invert" />
+          <img src={poweredByLogo} alt="Powered by" className="h-10 w-auto object-contain opacity-90 drop-shadow-sm" />
         </div>
       </div>
     </main>
