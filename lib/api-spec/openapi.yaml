@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: registrations
+    description: Conference registration operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /registrations:
+    get:
+      operationId: getRegistrationStatus
+      tags: [registrations]
+      summary: Check whether this browser has registered
+      responses:
+        "200":
+          description: Registration status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegistrationStatus"
+    post:
+      operationId: createRegistration
+      tags: [registrations]
+      summary: Create a conference registration
+      description: Stores a validated attendee registration and returns the attendee name for confirmation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationInput"
+      responses:
+        "201":
+          description: Registration created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegistrationConfirmation"
+        "400":
+          description: Invalid registration data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Registration already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Registration could not be saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    RegistrationInput:
+      type: object
+      properties:
+        firstName:
+          type: string
+          minLength: 1
+          maxLength: 100
+        lastName:
+          type: string
+          minLength: 1
+          maxLength: 100
+        email:
+          type: string
+          maxLength: 254
+          pattern: "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+        phone:
+          type: string
+          minLength: 7
+          maxLength: 30
+          pattern: "^[+0-9()\\-\\s]+$"
+        scfhsNumber:
+          type: string
+          minLength: 1
+          maxLength: 100
+        nationalId:
+          type: string
+          minLength: 1
+          maxLength: 30
+          pattern: "^[0-9]+$"
+        speciality:
+          type: string
+          minLength: 1
+          maxLength: 120
+        hospital:
+          type: string
+          minLength: 1
+          maxLength: 200
+      required:
+        - firstName
+        - lastName
+        - email
+        - phone
+        - scfhsNumber
+        - nationalId
+        - speciality
+        - hospital
+    RegistrationConfirmation:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    RegistrationStatus:
+      type: object
+      properties:
+        registered:
+          type: boolean
+      required:
+        - registered
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+

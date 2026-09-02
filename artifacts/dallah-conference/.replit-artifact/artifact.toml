@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Dallah Conference Registration"
+description = "A polished public registration website for the Diabetes & Obesity Conference hosted by Dallah Hospital Al Nakheel, with validated attendee submission and confirmation."
+version = "1.0.0"
+id = "artifacts/dallah-conference"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20669
+
+[services.development]
+run = "pnpm --filter @workspace/dallah-conference run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dallah-conference", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/dallah-conference/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20669"
+BASE_PATH = "/"

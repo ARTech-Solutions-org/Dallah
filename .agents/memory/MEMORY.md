@@ -1,0 +1,2 @@
+- [Project database provider](database-provider.md) — keep the registration database provider-agnostic behind DATABASE_URL and Drizzle.
+- [Registration uniqueness](registration-uniqueness.md) — preserve both browser-cookie and database protections against duplicate attendee submissions.

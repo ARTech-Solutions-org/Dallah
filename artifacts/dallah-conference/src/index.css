@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-display: var(--app-font-display);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  --background: 42 36% 96%;
+  --foreground: 188 30% 18%;
+  --border: 186 18% 84%;
+  --input: 186 18% 84%;
+  --ring: 185 63% 41%;
+  --card: 42 44% 99%;
+  --card-foreground: 188 30% 18%;
+  --primary: 185 63% 35%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 42 36% 92%;
+  --secondary-foreground: 188 30% 22%;
+  --muted: 42 25% 91%;
+  --muted-foreground: 188 14% 43%;
+  --accent: 29 76% 62%;
+  --accent-foreground: 188 30% 16%;
+  --destructive: 0 63% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --app-font-sans: 'DM Sans', sans-serif;
+  --app-font-display: 'Manrope', sans-serif;
+  --radius: 1.1rem;
+  --shadow-soft: 0 18px 45px rgba(20, 75, 76, 0.10);
+}
+
+.dark {
+  --background: 188 30% 11%;
+  --foreground: 42 36% 96%;
+  --border: 188 18% 27%;
+  --input: 188 18% 27%;
+  --ring: 185 63% 50%;
+  --card: 188 27% 15%;
+  --card-foreground: 42 36% 96%;
+  --primary: 185 63% 48%;
+  --primary-foreground: 188 30% 11%;
+  --secondary: 188 18% 23%;
+  --secondary-foreground: 42 36% 96%;
+  --muted: 188 18% 20%;
+  --muted-foreground: 42 15% 72%;
+  --accent: 29 76% 62%;
+  --accent-foreground: 188 30% 11%;
+  --destructive: 0 63% 58%;
+  --destructive-foreground: 0 0% 100%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground font-sans antialiased; margin: 0; }
+  button, input, select { font: inherit; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: .65; }
+  50% { transform: scale(1.05); opacity: .9; }
+}
+
+.animate-rise-in { animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) both; }
+.animate-rise-in-delay { animation: rise-in .7s .12s cubic-bezier(.22, 1, .36, 1) both; }
+.animate-breathe { animation: breathe 8s ease-in-out infinite; }
+
+.conference-page {
+  background-color: #eee9df;
+  background-image:
+    radial-gradient(circle at 12% 12%, rgba(255, 255, 255, .8), transparent 22rem),
+    radial-gradient(circle at 90% 72%, rgba(82, 171, 164, .12), transparent 25rem);
+}
+
+.conference-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .25;
+  background-image:
+    linear-gradient(116deg, transparent 0 49%, rgba(78, 155, 151, .1) 49.1% 49.3%, transparent 49.4%),
+    linear-gradient(32deg, transparent 0 66%, rgba(78, 155, 151, .08) 66.1% 66.3%, transparent 66.4%);
+}
+
+.conference-orb {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(1px);
+}
+
+.conference-orb-top {
+  top: -7rem;
+  right: -5rem;
+  width: 18rem;
+  height: 18rem;
+  background: radial-gradient(circle, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0));
+}
+
+.conference-orb-left {
+  top: 32rem;
+  left: -10rem;
+  width: 22rem;
+  height: 22rem;
+  background: radial-gradient(circle, rgba(95, 186, 177, .2), rgba(95, 186, 177, 0));
+}
+
+.conference-orb-bottom {
+  right: -8rem;
+  bottom: -8rem;
+  width: 24rem;
+  height: 24rem;
+  background: radial-gradient(circle, rgba(95, 186, 177, .18), rgba(95, 186, 177, 0));
+}
+
+.conference-dots {
+  position: absolute;
+  width: 9rem;
+  height: 15rem;
+  pointer-events: none;
+  opacity: .7;
+  background-image: radial-gradient(circle, #63aaa4 1.3px, transparent 1.7px);
+  background-size: 1.2rem 1.2rem;
+}
+
+.conference-dots-left {
+  top: 16rem;
+  left: .5rem;
+  transform: rotate(12deg);
+}
+
+.conference-dots-right {
+  top: 28rem;
+  right: .5rem;
+  transform: rotate(-17deg);
+}
+
+.confirmation-art {
+  position: relative;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(219, 242, 233, .9), rgba(219, 242, 233, 0) 68%),
+    radial-gradient(circle, #65aca6 1.3px, transparent 1.7px);
+  background-size: auto, 1.2rem 1.2rem;
+}
+
+.confirmation-art::before,
+.confirmation-art::after {
+  content: '';
+  position: absolute;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 1px solid rgba(72, 156, 148, .32);
+  transform: rotate(28deg);
+}
+
+.confirmation-art::before {
+  top: .7rem;
+  left: .9rem;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.confirmation-art::after {
+  right: .9rem;
+  bottom: .7rem;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+.page-grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .035;
+  z-index: 20;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
