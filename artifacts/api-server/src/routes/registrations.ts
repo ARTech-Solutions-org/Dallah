@@ -62,7 +62,8 @@ router.post("/registrations", async (req, res): Promise<void> => {
       return;
     }
     req.log.error({ err: error }, "Failed to save registration");
-    res.status(500).json({ error: "We couldn't save your registration. Please try again." });
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    res.status(500).json({ error: `We couldn't save your registration. DB Error: ${errorMessage}` });
   }
 });
 
