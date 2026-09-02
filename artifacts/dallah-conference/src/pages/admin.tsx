@@ -19,10 +19,12 @@ type Registration = {
   id: number;
   firstName: string;
   lastName: string;
-  mobile: string;
+  phone: string;
   email: string;
-  specialty: string;
+  speciality: string;
   hospital: string;
+  scfhsNumber: string;
+  nationalId: string;
   createdAt: string;
 };
 
@@ -77,7 +79,7 @@ export default function AdminDashboard() {
   const exportToCSV = () => {
     if (!data || data.length === 0) return;
 
-    const headers = ["ID", "First Name", "Last Name", "Mobile", "Email", "Specialty", "Hospital", "Registration Date"];
+    const headers = ["ID", "First Name", "Last Name", "Phone", "Email", "Speciality", "Hospital", "SCFHS Number", "National ID", "Registration Date"];
     const csvRows = [headers.join(",")];
 
     for (const row of data) {
@@ -85,10 +87,12 @@ export default function AdminDashboard() {
         row.id,
         `"${row.firstName.replace(/"/g, '""')}"`,
         `"${row.lastName.replace(/"/g, '""')}"`,
-        `"${row.mobile}"`,
+        `"${row.phone}"`,
         `"${row.email}"`,
-        `"${row.specialty.replace(/"/g, '""')}"`,
+        `"${row.speciality.replace(/"/g, '""')}"`,
         `"${row.hospital.replace(/"/g, '""')}"`,
+        `"${row.scfhsNumber}"`,
+        `"${row.nationalId}"`,
         `"${new Date(row.createdAt).toLocaleString()}"`,
       ];
       csvRows.push(values.join(","));
@@ -108,7 +112,7 @@ export default function AdminDashboard() {
   // Process data for charts
   const specialtyData = data ? Object.entries(
     data.reduce((acc, curr) => {
-      acc[curr.specialty] = (acc[curr.specialty] || 0) + 1;
+      acc[curr.speciality] = (acc[curr.speciality] || 0) + 1;
       return acc;
     }, {} as Record<string, number>)
   ).map(([name, value]) => ({ name, value })) : [];
@@ -301,10 +305,10 @@ export default function AdminDashboard() {
                         <div className="font-medium text-foreground">{user.firstName} {user.lastName}</div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-foreground">{user.mobile}</div>
+                        <div className="text-foreground">{user.phone}</div>
                         <div className="text-muted-foreground">{user.email}</div>
                       </td>
-                      <td className="px-6 py-4 text-foreground">{user.specialty}</td>
+                      <td className="px-6 py-4 text-foreground">{user.speciality}</td>
                       <td className="px-6 py-4 text-foreground">{user.hospital}</td>
                       <td className="px-6 py-4 text-muted-foreground whitespace-nowrap">
                         {new Date(user.createdAt).toLocaleDateString()}
