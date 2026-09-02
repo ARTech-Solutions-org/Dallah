@@ -1,5 +1,5 @@
 {
-  "installCommand": "pnpm install --frozen-lockfile",
+  "installCommand": "pnpm install --no-frozen-lockfile",
   "buildCommand": "pnpm --filter @workspace/api-server run build:vercel && pnpm --filter @workspace/dallah-conference run build",
   "outputDirectory": "artifacts/dallah-conference/dist/public",
   "rewrites": [
