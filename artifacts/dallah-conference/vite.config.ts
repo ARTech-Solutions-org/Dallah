@@ -39,7 +39,7 @@ export default defineConfig(async () => {
         // Resolve the workspace lib directly so pnpm workspace is not required
         '@workspace/api-client-react': path.resolve(
           import.meta.dirname,
-          '../../lib/api-client-react/src/index.ts',
+          '../../lib/api-client-react/src',
         ),
       },
       dedupe: ['react', 'react-dom'],
@@ -55,7 +55,12 @@ export default defineConfig(async () => {
       host: '0.0.0.0',
       allowedHosts: true,
       fs: {
-        strict: true,
+        strict: false,
+        allow: [
+          path.resolve(import.meta.dirname),
+          path.resolve(import.meta.dirname, '../../lib'),
+          path.resolve(import.meta.dirname, '../../attached_assets'),
+        ],
       },
     },
     preview: {
