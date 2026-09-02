@@ -95,10 +95,10 @@
 .animate-breathe { animation: breathe 8s ease-in-out infinite; }
 
 .conference-page {
-  background-color: #eee9df;
+  background-color: #087c80;
   background-image:
-    radial-gradient(circle at 12% 12%, rgba(255, 255, 255, .8), transparent 22rem),
-    radial-gradient(circle at 90% 72%, rgba(82, 171, 164, .12), transparent 25rem);
+    radial-gradient(circle at 12% 12%, rgba(255, 255, 255, .15), transparent 22rem),
+    radial-gradient(circle at 90% 72%, rgba(255, 255, 255, .1), transparent 25rem);
 }
 
 .conference-page::before {
@@ -108,8 +108,8 @@
   pointer-events: none;
   opacity: .25;
   background-image:
-    linear-gradient(116deg, transparent 0 49%, rgba(78, 155, 151, .1) 49.1% 49.3%, transparent 49.4%),
-    linear-gradient(32deg, transparent 0 66%, rgba(78, 155, 151, .08) 66.1% 66.3%, transparent 66.4%);
+    linear-gradient(116deg, transparent 0 49%, rgba(255, 255, 255, .25) 49.1% 49.3%, transparent 49.4%),
+    linear-gradient(32deg, transparent 0 66%, rgba(255, 255, 255, .15) 66.1% 66.3%, transparent 66.4%);
 }
 
 .conference-orb {
@@ -124,7 +124,7 @@
   right: -5rem;
   width: 18rem;
   height: 18rem;
-  background: radial-gradient(circle, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0));
+  background: radial-gradient(circle, rgba(255, 255, 255, .25), rgba(255, 255, 255, 0));
 }
 
 .conference-orb-left {
@@ -132,7 +132,7 @@
   left: -10rem;
   width: 22rem;
   height: 22rem;
-  background: radial-gradient(circle, rgba(95, 186, 177, .2), rgba(95, 186, 177, 0));
+  background: radial-gradient(circle, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));
 }
 
 .conference-orb-bottom {
@@ -140,7 +140,7 @@
   bottom: -8rem;
   width: 24rem;
   height: 24rem;
-  background: radial-gradient(circle, rgba(95, 186, 177, .18), rgba(95, 186, 177, 0));
+  background: radial-gradient(circle, rgba(255, 255, 255, .12), rgba(255, 255, 255, 0));
 }
 
 .conference-dots {
@@ -149,7 +149,7 @@
   height: 15rem;
   pointer-events: none;
   opacity: .7;
-  background-image: radial-gradient(circle, #63aaa4 1.3px, transparent 1.7px);
+  background-image: radial-gradient(circle, #ffffff 1.3px, transparent 1.7px);
   background-size: 1.2rem 1.2rem;
 }
 
