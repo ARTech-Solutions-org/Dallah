@@ -33,6 +33,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import NotFound from '@/pages/not-found';
+import AdminDashboard from '@/pages/admin';
 import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import bannerImage from './assets/dallah-banner.jpg';
 import shieldLogo from '@assets/Untitled_design_(19)_1788357176875.png';
@@ -450,6 +451,7 @@ function Router() {
     <RoutedErrorBoundary>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/admin" component={AdminDashboard} />
         <Route component={NotFound} />
       </Switch>
     </RoutedErrorBoundary>
