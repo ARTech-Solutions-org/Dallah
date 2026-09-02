@@ -171,7 +171,8 @@
   background:
     radial-gradient(circle at 50% 50%, rgba(219, 242, 233, .9), rgba(219, 242, 233, 0) 68%),
     radial-gradient(circle, #65aca6 1.3px, transparent 1.7px);
-  background-size: auto, 1.2rem 1.2rem;
+  background-position: center, center;
+  background-size: auto, 2.5rem 2.5rem;
 }
 
 .confirmation-art::before,
