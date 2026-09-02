@@ -45,9 +45,10 @@ const REGISTRATION_COOKIE = "dallah_conference_registered";
 const REGISTRATION_COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year in seconds
 
 function getDb() {
-  const databaseUrl = process.env.DATABASE_URL;
+  const databaseUrl = process.env.NEON_DATABASE_URL ?? process.env.DATABASE_URL ?? process.env.POSTGRES_URL;
+
   if (!databaseUrl) {
-    throw new Error("DATABASE_URL must be set.");
+    throw new Error("NEON_DATABASE_URL, DATABASE_URL, or POSTGRES_URL must be set.");
   }
   const sql = neon(databaseUrl);
   return drizzle(sql, { schema: { registrationsTable } });
