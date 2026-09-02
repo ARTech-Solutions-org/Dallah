@@ -50,6 +50,14 @@ Public registration website for the Diabetes & Obesity Conference hosted by Dall
 - The frontend artifact workflow supplies `PORT` and `BASE_PATH`; raw Vite builds need those environment variables set manually.
 - Run API codegen after changing `lib/api-spec/openapi.yaml`.
 
+## Vercel
+
+- This repository is prepared for one Vercel project from the repository root.
+- `vercel.json` builds the `@workspace/dallah-conference` frontend and serves `artifacts/dallah-conference/dist/public`.
+- `api/[[...path]].ts` exposes the existing Express API under the same deployment's `/api/*` path.
+- Add `DATABASE_URL` to Vercel Project Settings → Environment Variables for the environments you deploy. Keep it server-only: do not prefix it with `VITE_`, put it in frontend environment files, or commit its value.
+- The API accepts `NEON_DATABASE_URL` as an optional server-only override and validates the configured URL before opening a bounded PostgreSQL pool.
+
 ## Pointers
 
 - See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details

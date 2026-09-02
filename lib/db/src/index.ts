@@ -12,7 +12,24 @@ if (!databaseUrl) {
   );
 }
 
-export const pool = new Pool({ connectionString: databaseUrl });
+let databaseProtocol: string;
+
+try {
+  databaseProtocol = new URL(databaseUrl).protocol;
+} catch {
+  throw new Error("The configured database URL is not a valid PostgreSQL URL.");
+}
+
+if (databaseProtocol !== "postgres:" && databaseProtocol !== "postgresql:") {
+  throw new Error("The configured database URL must use the PostgreSQL protocol.");
+}
+
+export const pool = new Pool({
+  connectionString: databaseUrl,
+  max: 1,
+  connectionTimeoutMillis: 10_000,
+  idleTimeoutMillis: 10_000,
+});
 export const db = drizzle(pool, { schema });
 
 export * from "./schema";

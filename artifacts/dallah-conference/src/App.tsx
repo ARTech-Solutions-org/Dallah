@@ -408,7 +408,7 @@ function Home() {
           />
         </section>
 
-        <section className="registration-card relative z-10 mx-auto -mt-9 max-w-[900px] rounded-[0.9rem] border-2 border-[#087c80] bg-[#fcf8ef] px-5 py-6 shadow-[0_22px_45px_rgba(28,68,67,0.2)] sm:-mt-16 sm:px-9 sm:py-8 lg:-mt-20 lg:px-10 lg:py-9">
+        <section className="registration-card relative z-10 mx-auto mt-5 max-w-[900px] rounded-[0.9rem] border-2 border-[#087c80] bg-[#fcf8ef] px-5 py-6 shadow-[0_22px_45px_rgba(28,68,67,0.2)] sm:mt-8 sm:px-9 sm:py-8 lg:mt-10 lg:px-10 lg:py-9">
           <div className="mb-7 flex items-start justify-between gap-5 border-b border-[#d9d5ca] pb-5">
             <div>
               <p className="mb-1.5 text-[0.64rem] font-bold uppercase tracking-[0.2em] text-[#087c80]">Attendee details</p>

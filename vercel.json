@@ -1,12 +1,10 @@
 {
-  "version": 2,
-  "installCommand": "echo 'skipping root install'",
-  "buildCommand": "cd artifacts/dallah-conference && npm install && npm run build",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm --filter @workspace/dallah-conference run build",
   "outputDirectory": "artifacts/dallah-conference/dist/public",
-  "framework": null,
   "rewrites": [
     {
-      "source": "/((?!api/).*)",
+      "source": "/((?!api(?:/|$)).*)",
       "destination": "/index.html"
     }
   ]
