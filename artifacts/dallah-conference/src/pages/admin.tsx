@@ -1,6 +1,19 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Download, Lock, Loader2, Users, FileSpreadsheet, LogOut } from "lucide-react";
+import { Download, Lock, Loader2, Users, FileSpreadsheet, LogOut, Activity } from "lucide-react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend
+} from "recharts";
 
 type Registration = {
   id: number;
@@ -12,6 +25,9 @@ type Registration = {
   hospital: string;
   createdAt: string;
 };
+
+// Colors for charts
+const COLORS = ['#087c80', '#3cc0cf', '#f4a261', '#e76f51', '#2a9d8f', '#e9c46a'];
 
 export default function AdminDashboard() {
   const [password, setPassword] = useState("");
@@ -89,6 +105,21 @@ export default function AdminDashboard() {
     document.body.removeChild(link);
   };
 
+  // Process data for charts
+  const specialtyData = data ? Object.entries(
+    data.reduce((acc, curr) => {
+      acc[curr.specialty] = (acc[curr.specialty] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>)
+  ).map(([name, value]) => ({ name, value })) : [];
+
+  const hospitalData = data ? Object.entries(
+    data.reduce((acc, curr) => {
+      acc[curr.hospital] = (acc[curr.hospital] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>)
+  ).map(([name, value]) => ({ name, value })) : [];
+
   if (!authenticatedPassword) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
@@ -117,7 +148,7 @@ export default function AdminDashboard() {
           />
           <button
             type="submit"
-            className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            className="w-full rounded-md bg-[#087c80] px-4 py-2 text-sm font-medium text-white hover:bg-[#087c80]/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
             Log In
           </button>
@@ -128,7 +159,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-muted/20 pb-12 pt-6">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h1 className="text-2xl font-bold text-foreground">Admin Dashboard</h1>
@@ -138,7 +169,7 @@ export default function AdminDashboard() {
             <button
               onClick={exportToCSV}
               disabled={isLoading || !data || data.length === 0}
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-md bg-[#087c80] px-4 py-2 text-sm font-medium text-white hover:bg-[#087c80]/90 disabled:opacity-50"
             >
               <FileSpreadsheet className="h-4 w-4" />
               Export CSV
@@ -153,10 +184,11 @@ export default function AdminDashboard() {
           </div>
         </div>
 
+        {/* Stats Section */}
         <div className="grid gap-6 md:grid-cols-3 mb-8">
           <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#087c80]/10 text-[#087c80]">
                 <Users className="h-6 w-6" />
               </div>
               <div>
@@ -165,7 +197,72 @@ export default function AdminDashboard() {
               </div>
             </div>
           </div>
+          
+          <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#3cc0cf]/10 text-[#3cc0cf]">
+                <Activity className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-muted-foreground">Total Specialties</p>
+                <p className="text-3xl font-bold text-foreground">{specialtyData.length}</p>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Charts Section */}
+        {!isLoading && data && data.length > 0 && (
+          <div className="grid gap-6 lg:grid-cols-2 mb-8">
+            <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="mb-6 text-lg font-medium text-foreground">Registrations by Specialty</h3>
+              <div className="h-[300px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={specialtyData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      outerRadius={100}
+                      fill="#8884d8"
+                      dataKey="value"
+                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    >
+                      {specialtyData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="mb-6 text-lg font-medium text-foreground">Registrations by Hospital</h3>
+              <div className="h-[300px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={hospitalData}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="name" tick={{fontSize: 12}} interval={0} angle={-45} textAnchor="end" height={80} />
+                    <YAxis allowDecimals={false} />
+                    <Tooltip />
+                    <Bar dataKey="value" fill="#3cc0cf" radius={[4, 4, 0, 0]}>
+                      {hospitalData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
           <div className="border-b border-border px-6 py-4">
