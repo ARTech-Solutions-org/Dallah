@@ -403,7 +403,7 @@ function Home() {
         </header>
       </div>
 
-      <section className="hero-banner relative z-10 w-full overflow-hidden border-y border-[#0c7c80]/20 bg-[#087c80] shadow-[0_20px_50px_rgba(28,68,67,0.2)]">
+      <section className="hero-banner relative z-10 w-full overflow-hidden border-y border-[#0c7c80]/20 bg-[#3cc0cf] shadow-[0_20px_50px_rgba(28,68,67,0.2)]">
         <img
           src={referenceHero}
           alt="Diabetes and Obesity Conference by Dallah Hospital Al Nakheel, Riyadh, September 18th 2026"
