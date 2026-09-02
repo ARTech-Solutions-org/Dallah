@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "pnpm install --no-frozen-lockfile",
+  "installCommand": "echo 'skipping root install'",
   "buildCommand": "cd artifacts/dallah-conference && npm install && npm run build",
   "outputDirectory": "artifacts/dallah-conference/dist/public",
   "framework": null,
