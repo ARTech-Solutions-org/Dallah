@@ -86,20 +86,27 @@ export default function AdminDashboard() {
   const exportToCSV = () => {
     if (!data || data.length === 0) return;
 
+    // Excel formula format ="VALUE" forces Excel to display long numbers as full text without scientific notation
+    const formatExcelText = (val: string | number | null | undefined): string => {
+      if (val === null || val === undefined || val === "") return '""';
+      const clean = String(val).replace(/"/g, '""');
+      return `="${clean}"`;
+    };
+
     const headers = ["ID", "First Name", "Last Name", "Phone", "Email", "Speciality", "Hospital", "SCFHS Number", "National ID", "Registration Date"];
     const csvRows = [headers.join(",")];
 
     for (const row of data) {
       const values = [
         row.id,
-        `"${row.firstName.replace(/"/g, '""')}"`,
-        `"${row.lastName.replace(/"/g, '""')}"`,
-        `"${row.phone}"`,
-        `"${row.email}"`,
-        `"${row.speciality.replace(/"/g, '""')}"`,
-        `"${row.hospital.replace(/"/g, '""')}"`,
-        `"${row.scfhsNumber}"`,
-        `"${row.nationalId}"`,
+        `"${(row.firstName || "").replace(/"/g, '""')}"`,
+        `"${(row.lastName || "").replace(/"/g, '""')}"`,
+        formatExcelText(row.phone),
+        `"${(row.email || "").replace(/"/g, '""')}"`,
+        `"${(row.speciality || "").replace(/"/g, '""')}"`,
+        `"${(row.hospital || "").replace(/"/g, '""')}"`,
+        formatExcelText(row.scfhsNumber),
+        formatExcelText(row.nationalId),
         `"${new Date(row.createdAt).toLocaleString()}"`,
       ];
       csvRows.push(values.join(","));
