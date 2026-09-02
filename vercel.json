@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "buildCommand": "cd artifacts/dallah-conference && npm install && npm run build",
+  "outputDirectory": "artifacts/dallah-conference/dist/public",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
