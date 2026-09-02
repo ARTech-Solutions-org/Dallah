@@ -365,9 +365,11 @@ function Home() {
         <div className="conference-orb conference-orb-top" aria-hidden="true" />
         <div className="conference-orb conference-orb-bottom" aria-hidden="true" />
         <section className="confirmation-card relative z-10 w-full max-w-[470px] rounded-[0.9rem] border border-[#d8d1c3] bg-[#fcf8ef] px-6 py-8 shadow-[0_20px_55px_rgba(28,68,67,0.16)] sm:px-9 sm:py-10">
-          <div className="confirmation-art mx-auto mb-7 flex h-36 w-36 items-center justify-center" aria-hidden="true">
+          <div className="confirmation-art relative mx-auto mb-7 flex h-36 w-36 items-center justify-center" aria-hidden="true">
             <Network className="absolute h-32 w-32 text-[#77b6ae] opacity-80" strokeWidth={1} />
-            <Handshake className="relative z-10 h-16 w-16 text-[#087c80]" strokeWidth={1.35} />
+            <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full bg-[#fcf8ef]">
+              <Handshake className="h-16 w-16 text-[#087c80]" strokeWidth={1.35} />
+            </div>
           </div>
           <div data-testid="text-confirmation" className="space-y-5 text-left text-[0.95rem] leading-7 text-[#1c4c4d]">
             <p>Dear {confirmationName},</p>
