@@ -38,7 +38,6 @@ import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import bannerImage from './assets/dallah-banner.jpg';
 import shieldLogo from '@assets/Untitled_design_(19)_1788357176875.png';
 import dallahLogo from '@assets/Untitled_design_(24)_1788357638105.png';
-import referenceHero from '@assets/image_1788357913186.png';
 import poweredByLogo from './assets/powered-by.png';
 
 const queryClient = new QueryClient();
@@ -286,7 +285,7 @@ function LegacyHome() {
               <MapPin className="h-5 w-5 shrink-0 text-accent" aria-hidden="true" />
               <div>
                 <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-primary-foreground/65">Where</p>
-                <p className="mt-0.5 text-sm font-semibold">Crowne Plaza RDC, Riyadh</p>
+                <p className="mt-0.5 text-sm font-semibold">Riyadh Marriott Hotel, Makarim Hall 1 &amp; 2</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -405,7 +404,7 @@ function Home() {
 
         <section className="hero-banner overflow-hidden rounded-[0.85rem] border border-[#0c7c80]/20 bg-[#3cc0cf] shadow-[0_20px_50px_rgba(28,68,67,0.2)]">
           <img
-            src={referenceHero}
+            src={bannerImage}
             alt="Diabetes and Obesity Conference by Dallah Hospital Al Nakheel, Riyadh, September 18th 2026"
             data-testid="img-conference-banner"
             className="block h-auto w-full"
